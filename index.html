@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/help-center.css" />
+	<title>我的购物车</title>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			font-family: "微软雅黑";
+			list-style: none;
+			color: #666;
+			text-decoration: none;
+			font-size: 14px;
+		}
+
+		body {
+			width: 100%;
+			background: #f5f5f5;
+			height: 100%;
+		}
+
+		.header {
+			font-size: 12px;
+			border-bottom: 2px solid #ff6700;
+			background: #fff;
+			color: #b0b0b0;
+			position: relative;
+			z-index: 20;
+			height: 100px;
+		}
+
+		.header .container {
+			position: relative;
+			width: 1226px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.header .container .header-logo {
+			width: 93px;
+			margin-top: 26px;
+		}
+
+		.logo {
+			width: 48px;
+			height: 48px;
+			position: relative;
+			display: block;
+			width: 55px;
+			height: 55px;
+			overflow: hidden;
+			background-color: #ff6700;
+		}
+
+		.header-title {
+			float: left;
+			margin-top: 26px;
+			font-size: 12px;
+		}
+
+		.topbar-info {
+			margin-top: 30px;
+			line-height: 40px;
+		}
+
+		.link {
+			padding: 0 5px;
+			color: #757575;
+			text-decoration: none;
+		}
+
+		.hid {
+			overflow: hidden;
+		}
+
+		.left {
+			float: left;
+		}
+
+		.box_head {
+			position: relative;
+			margin: 0;
+			height: 50px;
+			font-size: 30px;
+			font-weight: 400;
+			color: #757575;
+			border-top: 1px solid #e0e0e0;
+		}
+
+		.box_head span {
+			position: absolute;
+			top: -20px;
+			left: 372px;
+			height: 40px;
+			width: 482px;
+			line-height: 40px;
+			text-align: center;
+			display: block;
+			background-color: #f5f5f5;
+			font-size: 30px;
+		}
+
+		#box {
+			width: 1240px;
+			margin: 20px auto;
+		}
+
+		#box ul {
+			margin-right: -14px;
+			overflow: hidden;
+		}
+
+		#box li {
+			width: 234px;
+			float: left;
+			margin-right: 14px;
+			padding: 24px 0 20px;
+			background: #FFF;
+			text-align: center;
+			position: relative;
+			cursor: pointer;
+			margin-bottom: 14px;
+		}
+
+		.pro_img {
+			width: 150px;
+			height: 150px;
+			margin: 0 auto 18px;
+		}
+
+		.pro_name {
+			display: block;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			font-weight: 400;
+		}
+
+		.pro_name a {
+			color: #333;
+		}
+
+		.pro_price {
+			color: #ff6700;
+			margin: 10px;
+		}
+
+		.pro_rank {
+			color: #757575;
+			margin: 10px;
+		}
+
+		#box li:hover .add_btn {
+			display: block;
+		}
+
+		#box li:hover .pro_rank {
+			opacity: 0;
+		}
+
+		#box li .add_btn:hover {
+			background-color: #f60;
+			color: white;
+		}
+
+
+
+		.add_btn {
+			height: 22px;
+			position: absolute;
+			width: 122px;
+			bottom: 28px;
+			left: 50%;
+			margin-left: -61px;
+			line-height: 22px;
+			display: none;
+			color: #F60;
+			font-size: 12px;
+			border: 1px solid #f60;
+		}
+
+		.car {
+			width: 1240px;
+			margin: 20px auto;
+			background: #FFF;
+		}
+
+		.car .check {
+			width: 50px;
+
+		}
+
+		.car .check i {
+			color: #fff;
+			display: inline-block;
+
+			width: 18px;
+			height: 18px;
+			line-height: 18px;
+			border: 1px solid #e0e0e0;
+			margin-left: 24px;
+			background-color: #fff;
+			font-size: 16px;
+			text-align: center;
+			vertical-align: middle;
+			position: relative;
+			top: -1px;
+			cursor: pointer;
+			font-family: "iconfont";
+		}
+
+		.i_acity {
+
+			border-color: #ff6700 !important;
+			background-color: #ff6700 !important;
+		}
+
+		.car .img {
+			width: 190px;
+		}
+
+		.car .img img {
+			display: block;
+			width: 80px;
+			height: 80px;
+			margin: 3px auto;
+		}
+
+		.car .name {
+			width: 300px;
+		}
+
+		.car .name span {
+			line-height: 1;
+			margin-top: 8px;
+			margin-bottom: 8px;
+			font-size: 18px;
+			font-weight: normal;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		.car .price {
+			width: 144px;
+			text-align: right;
+			padding-right: 84px;
+		}
+
+		.car .price span {
+			color: #ff6700;
+			font-size: 16px;
+		}
+
+		.car .number {
+			width: 150px;
+		}
+
+		.car .subtotal {
+			width: 130px;
+
+		}
+
+		.car .ctrl {
+			width: 105px;
+			padding-right: 25px;
+			text-align: center;
+		}
+
+		.car .ctrl a {
+			font-size: 20px;
+			cursor: pointer;
+			display: block;
+			width: 26px;
+			height: 26px;
+			margin: 30px auto;
+			line-height: 26px;
+		}
+
+		.car .ctrl a:hover {
+			color: #FFF;
+			background: #ff6700;
+			border-radius: 50%;
+		}
+
+		.head_row {
+			height: 70px;
+			line-height: 70px;
+		}
+
+		.head_row,
+		.row {
+			border-bottom: solid 1px #e0e0e0;
+		}
+
+		.row {
+			height: 86px;
+			line-height: 86px;
+			padding: 15px 0;
+			margin: 0px;
+		}
+
+		#sum_area {
+			width: 1240px;
+			height: 60px;
+			background: white;
+			margin: 20px auto;
+		}
+
+		#sum_area #pay {
+			width: 250px;
+			height: 60px;
+			text-align: center;
+			float: right;
+			line-height: 60px;
+			font-size: 19px;
+			background: #FF4B00;
+			color: white;
+		}
+
+		#sum_area #pay_amout {
+			width: 250px;
+			height: 60px;
+			text-align: center;
+			float: right;
+			line-height: 60px;
+			font-size: 16px;
+			color: #FF4B00;
+		}
+
+		#sum_area #pay_amout #price_num {
+			width: 100px;
+			height: 60px;
+			font-size: 25px;
+			color: #FF4B00;
+			/*	float: left;*/
+		}
+
+		.item_count_i {
+			height: 85px;
+			width: 10%;
+			/*border: 1px solid black;*/
+			float: left;
+			margin-right: 25px;
+		}
+
+		.num_count {
+			width: 150px;
+			height: 40px;
+			border: 1.2px solid #E0E0E0;
+			float: right;
+			margin-top: 21px;
+
+		}
+
+		.count_i {
+			width: 30%;
+			height: 40px;
+			line-height: 40px;
+			float: left;
+			text-align: center;
+			font-size: 21px;
+			color: #747474;
+		}
+
+		.count_i:hover {
+			width: 30%;
+			height: 40px;
+			line-height: 40px;
+			float: left;
+			text-align: center;
+			font-size: 21px;
+			color: #747474;
+			background: #E0E0E0;
+			cursor: pointer;
+		}
+
+		.c_num {
+		
+			width: 40%;
+			height: 40px;
+			line-height: 40px;
+			float: left;
+			text-align: center;
+			font-size: 16px;
+			color: #747474;
+		}
+
+		.count_d {
+			width: 30%;
+			height: 40px;
+			line-height: 40px;
+			float: left;
+			text-align: center;
+			font-size: 25px;
+			color: #747474;
+		}
+
+		.count_d:hover {
+			width: 30%;
+			height: 40px;
+			line-height: 40px;
+			float: left;
+			text-align: center;
+			font-size: 25px;
+			color: #747474;
+			background: #E0E0E0;
+			cursor: pointer;
+		}
+
+		.i_acity2 {
+			border-color: #ff6700 !important;
+			background-color: #ff6700 !important;
+		}
+
+		.hw_container {
+			display: flex;
+			justify-content: space-around;
+			margin: 5%;
+		}
+		.menu {
+            /* 相对静止 */
+            /* position: sticky;
+            top: 0; */
+            width: 100%;
+            height: 5vh;
+            margin-top: 10px;
+            /* background-color: rgba(96, 143, 159, 0.25); */
+            display: flex;
+            z-index: 2;
+        }
+		.menu button{
+            background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            border-radius: 20px;
+            border: 1px solid #fda085;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.1rem;
+            padding: 0.9rem 4rem;
+            transition: transform 80ms ease-in;
+		}
+		.lottery{
+		overflow: hidden;width: 60%;margin-left: 20%; margin-top: 20px; border: #333 2px solid;border-radius: 10px; 
+		display: none;
+		}
+		.lottery_active{
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<script>
+
+		window.onload = function () {
+			// 商品列表
+			var aData = [{
+				"imgUrl": "img/001.jpg",
+				"proName": "杂牌包包",
+				"proPrice": "999",
+				"proComm": "1",
+				"information":"？不知道哪里找来的杂牌包包但价格非常昂贵！(;¬_¬)"
+			},
+			{
+				"imgUrl": "img/002.jpg",
+				"proName": " 我用过的勺子 ",
+				"proPrice": "99.9",
+				"proComm": "2",
+				"information":"好奇这究竟是谁用过的勺子？◔ ‸◔？"
+			},
+			{
+				"imgUrl": "img/003.jpg",
+				"proName": " 盆子 ",
+				"proPrice": "65",
+				"proComm": "3",
+				"information":"一个普通的盆子，可以种植物（放在房顶可以防止僵王博士的进攻！————奇怪的邻居戴夫）๑乛◡乛๑ "
+			},
+			{
+				"imgUrl": "img/004.jpg",
+				"proName": " 放筷子的 ",
+				"proPrice": "149",
+				"proComm": "4",
+				"information":"因为不知到这玩意叫啥，所有叫‘放筷子的’"
+			},
+			{
+				"imgUrl": "img/005.jpg",
+				"proName": "好喝的  ",
+				"proPrice": "750",
+				"proComm": "5",
+				"information":"好喝的咖啡，图片仅供参考"
+			},
+			{
+				"imgUrl": "img/006.jpg",
+				"proName": " 蒸锅 ",
+				"proPrice": "199",
+				"proComm": "6",
+				"information":"航空合金打造的蒸锅，可以用来 蒸馍![][][][]?"
+			},
+			{
+				"imgUrl": "img/007.jpg",
+				"proName": " 饭勺",
+				"proPrice": "19.9",
+				"proComm": "7"
+			},
+			{
+				"imgUrl": "img/008.jpg",
+				"proName": "  冰箱",
+				"proPrice": "45",
+				"proComm": "8"
+
+			},
+			{
+				"imgUrl": "img/009.jpg",
+				"proName": " 神奇的水 ",
+				"proPrice": "207",
+				"proComm": "9",
+				"information":"♫喝了它有神奇的力量♫```"
+			},
+			{
+				"imgUrl": "img/010.jpg",
+				"proName": "不锈钢盆 ",
+				"proPrice": "199",
+				"proComm": "10",
+				"information":"含铬量为10.5%以上的铁基合金称为不锈钢。不锈钢是不锈钢和耐酸钢的简称。"
+			}
+			];
+			var oBox = document.getElementById("box");
+			var oCar = document.getElementById("car");
+			// 获取第三个lu元素
+			var oUl = document.getElementsByTagName("ul")[2];
+
+
+			for (var i = 0; i < aData.length; i++) {
+				var oLi = document.createElement("li");
+				var data = aData[i];
+
+				oLi.innerHTML += '<div class="pro_img"><img src="' + data["imgUrl"] + '" width="150" height="150"></div>';
+				oLi.innerHTML += '<h3 class="pro_name"><a href="#">' + data["proName"] + '</a></h3>';
+				oLi.innerHTML += '<p class="pro_price">' + data["proPrice"] + '元</p>';
+				oLi.innerHTML += '<p class="pro_rank">' + data["proComm"] + '万人好评</p>';
+				oLi.innerHTML += '<div class="add_btn">加入购物车</div>';
+				oUl.appendChild(oLi);
+
+			}
+			var aBtn = getClass(oBox, "add_btn");//获取box下的所有添加购物车按钮
+			var number = 0;//初始化商品数量
+			// 添加按钮对应的事件监听
+			for (var i = 0; i < aBtn.length; i++) {
+				number++;
+				aBtn[i].index = i;
+				aBtn[i].onclick = function () {
+					var oDiv = document.createElement("div");
+					var data = aData[this.index];
+					oDiv.className = "row hid";
+					oDiv.innerHTML += '<div class="check left"> <i class="i_check" id="i_check" οnclick="i_check()" >√</i></div>';
+					oDiv.innerHTML += '<div class="img left"><img src="' + data["imgUrl"] + '" width="80" height="80"></div>';
+					oDiv.innerHTML += '<div class="name left"><span>' + data["proName"] + '</span></div>';
+					oDiv.innerHTML += '<div class="price left"><span>' + data["proPrice"] + '元</span></div>';
+					oDiv.innerHTML += ' <div class="item_count_i"><div class="num_count"><div class="count_d">-</div><div class="c_num">1</div><div class="count_i">+</div></div> </div>'
+					oDiv.innerHTML += '<div class="subtotal left"><span>' + data["proPrice"] + '元</span></div>'
+					oDiv.innerHTML += '<div class="ctrl left"><a href="javascript:;">×</a></div>';
+					oCar.appendChild(oDiv);
+					var flag = true;
+					var check = oDiv.firstChild.getElementsByTagName("i")[0];
+					check.onclick = function () {
+						// console.log(check.className);
+						if (check.className == "i_check i_acity") {
+							check.classList.remove("i_acity");
+
+						} else {
+							check.classList.add("i_acity");
+						}
+						getAmount();
+					}
+					// 给a添加删除事件
+					var delBtn = oDiv.lastChild.getElementsByTagName("a")[0];
+					delBtn.onclick = function () {
+						var result = confirm("确定删除吗?");
+						if (result) {
+							oCar.removeChild(oDiv);
+							number--;
+							getAmount();
+						}
+					}
+					// 计算价格获取数量加的按钮
+					var i_btn = document.getElementsByClassName("count_i");
+					for (var k = 0; k < i_btn.length; k++) {
+						i_btn[k].onclick = function () {
+							bt = this;
+							//获取小计节点
+							at = this.parentElement.parentElement.nextElementSibling;
+							//获取单价节点
+							pt = this.parentElement.parentElement.previousElementSibling;
+							//获取数量值
+							node = bt.parentNode.childNodes[1];
+							console.log(node);
+							num = node.innerText;
+							num = parseInt(num);
+							num++;
+							node.innerText = num;
+							//获取单价
+							price = pt.innerText;
+							price = price.substring(0, price.length - 1);
+							//计算小计值
+							at.innerText = price * num + "元";
+							//计算总计值
+							getAmount();
+						}
+					}
+					//获取所有的数量减号按钮
+					var d_btn = document.getElementsByClassName("count_d");
+					for (k = 0; k < i_btn.length; k++) {
+						d_btn[k].onclick = function () {
+							bt = this;
+							//获取小计节点
+							at = this.parentElement.parentElement.nextElementSibling;
+							//获取单价节点
+							pt = this.parentElement.parentElement.previousElementSibling;
+							//获取c_num节点
+							node = bt.parentNode.childNodes[1];
+							num = node.innerText;
+							num = parseInt(num);
+							if (num > 1) {
+								num--;
+							}
+							node.innerText = num;
+							//获取单价
+							price = pt.innerText;
+							price = price.substring(0, price.length - 1);
+							//计算小计值		
+							at.innerText = price * num + "元";
+							//计算总计值
+							getAmount();
+						}
+					}
+
+					delBtn.onclick = function () {
+						var result = confirm("确定删除吗?");
+						if (result) {
+							oCar.removeChild(oDiv);
+							number--;
+							getAmount();
+						}
+					}
+
+				}
+			}
+			// 这是搜索框的代码
+			const findform=document.getElementById("find")
+			const sbul=document.getElementById("sbul")
+			const sbdiv=document.getElementById("sbdiv")
+			console.log("测试是否获取到了元素");
+			console.log(sbul);
+			console.log(sbdiv);
+				var temdata=[{
+					123:12
+				}]
+				findform.onsubmit=()=>{
+					// 创建数组来保存符合搜索的结果
+					temdata=[];
+					// index为临时数组中的索引
+					let index=0;
+					console.log("输入为"+findvalue.value);
+					if (findvalue.value.length==0) {
+						alert("请输入要查询的信息")
+						return
+					}
+					// console.log("商品名称为"+aData[0]["proName"])
+					for (let i = 0; i < aData.length; i++) {
+						// search为判断是否为字串函数，如果不是字串就返回-1
+						if(aData[i]["proName"].search(findvalue.value)!=-1){
+							// 如果找到了就添加到零时索引中
+							temdata[index]=aData[i];
+							index++;
+						}
+					}
+					console.log("搜索结果如下");
+					console.log(temdata);
+					if(temdata.length==0){
+						alert("您所搜索的商品未能找到，如果有需要请联系'@永远少年'添加！")
+						return
+					}
+					sbload(0)
+					// 添加按钮
+					sbdiv.innerHTML="";
+					for (let i = 0; i < temdata.length; i++) {
+						var sbbut=document.createElement("button")
+						sbbut.innerHTML=temdata[i]["proName"];
+						sbbut.addEventListener("click",()=>{
+							sbload(i)
+						})
+						sbdiv.appendChild(sbbut)
+					}
+				}
+				function sbload(i){
+				sbul.innerHTML="";
+				var sbLi = document.createElement("li");
+				var data =temdata[i] ;
+				sbLi.innerHTML = '<div ><img src="' + data["imgUrl"] + '" width="150" height="150"></div>';
+				sbLi.innerHTML += '<h3><a href="#" style="color:#e06559">' + data["proName"] + '</a></h3>';
+				sbLi.innerHTML += '<p >' + data["proPrice"] + '元</p>';
+				sbLi.innerHTML += '<p >' + data["proComm"] + '万人好评</p>';
+				sbLi.innerHTML+='<b style="color:#e06559">详情信息:</b>'+'<p>'+data["information"]+'</p>'
+				sbLi.innerHTML+='<b style="color:#fca880">Ciallo～(∠・ω< )⌒★ 现在下单最快明天送达哦</b>'
+				sbul.appendChild(sbLi);
+			}
+				// 经典阻止表单默认上交
+				findform.addEventListener("submit",(e)=>{
+					e.preventDefault()
+				})
+		}
+
+		function getClass(oBox, tagname) {
+			var aTag = oBox.getElementsByTagName("*");
+			var aBox = [];
+			for (var i = 0; i < aTag.length; i++) {
+				if (aTag[i].className == tagname) {
+					aBox.push(aTag[i]);
+				}
+			}
+			return aBox;
+		}
+
+
+		// 全选
+		var index = false;
+		function checkAll() {
+			var choose = document.getElementById("car").getElementsByTagName("i");
+			// console.log(choose);
+			if (choose.length != 1) {
+				for (i = 1; i < choose.length; i++) {
+					if (!index) {
+						choose[0].classList.add("i_acity2")
+						choose[i].classList.add("i_acity");
+					} else {
+						choose[i].classList.remove("i_acity");
+						choose[0].classList.remove("i_acity2")
+					}
+				}
+				index = !index;
+			}
+			getAmount();
+		}
+
+
+
+		//进行价格合计
+		function getAmount() {
+			// console.log(ys);
+			ns = document.getElementsByClassName("i_acity");
+			console.log(ns);
+			sum = 0;
+			//选中框
+			document.getElementById("price_num").innerText = sum;
+			for (y = 0; y < ns.length; y++) {
+				//小计
+				amount_info = ns[y].parentElement.parentElement.lastElementChild.previousElementSibling;
+				num = parseInt(amount_info.innerText);
+				sum += num;
+				document.getElementById("price_num").innerText = sum;
+			}
+		}
+	</script>
+	</head>
+
+	<body>
+		<!-- <img src="img/11.png" style="width: 100%;"> -->
+		<div class="menu">
+			<div style="flex-grow: 1;"></div>
+			<div style="flex-grow: 2;">
+				<form id="find" >
+					<input type="text" id="findvalue" style="display: inline-block; width: 50%;height: 40px;font-size: 18px;border-radius: 15px;padding-left: 5px;"placeholder="此处查询"><button>查询</button>
+				</form>
+			</div>
+			<div style="flex-grow: 1;">
+				<button id="Hide">抽奖</button>
+			</div>
+		</div>
+		<div class="lottery" >
+			<div >
+				欢迎来到阿卡丽的神秘商店，你的奖品为：<span></span><br>
+				<button>点我抽奖</button>
+			</div>
+		</div>
+		<script>
+			const Hidebut=document.getElementById("Hide")
+			const lottery=document.querySelector(".lottery")
+			Hidebut.addEventListener("click",()=>{
+				if(lottery.classList.contains("lottery_active")){
+					lottery.classList.remove("lottery_active")
+				}else{
+					lottery.classList.add("lottery_active")
+				}
+			})
+			var prizelist=Array(
+				"杂牌包包"," 盆子 "," 放筷子的 ","好喝的  "," 神奇的水 "," 蒸锅 ","不锈钢盆 ",
+			)
+			console.log(prizelist);
+			const lotterysp =document.querySelector(".lottery span")
+			const lotterybut=document.querySelector(".lottery button")
+			console.log(lotterybut);
+			lotterybut.addEventListener("click",()=>{
+				var c=0;
+				var clock=setInterval(()=>{
+					c++;
+					var run=Math.floor(Math.random()*prizelist.length)
+				console.log(c);
+				lotterysp.innerHTML=prizelist[run];
+				if(c>10){
+					lotterysp.style="font-size:18px;font-weight: 500;"
+					console.log("结束");
+					clearInterval(clock)
+				}
+				},100)
+			})
+</script>
+
+		<!-- 活动界面 -->
+		<div class="hw_container">
+			<!-- 轮播图页面 -->
+			<div class="showbox"
+				style="height: 30%;width: 40%; background-color: #ffffff; border-radius: 10px;overflow: hidden; box-shadow: #666 5px 5px 5px;">
+				<img src="RotationChart/az.png" alt="反正不会加载失败，就随便写写咯" style="width: 100%;">
+				<ul></ul>
+				<button id="former" style="width: 30px;float: left;"><img src="imgs/按钮_箭头向左.png" alt="👈" style="width: 100%;"></button>
+				<button id="after" style="width: 30px;float: right;top: 50%"><img src="imgs/按钮-箭头向右.png" alt="👉"style="width: 100%;"></button>
+				<!-- 本处放页面加载时的第一张轮播图 -->
+				<p style="color: #f7a40b;font-size: 1.5rem;font-weight: 600;">碧海流年，心跳如初~ 碧蓝航线六周年庆典</p>
+			</div>
+			<script>
+				const sdata = [
+					{
+						url: "RotationChart/az.png",
+						p: "碧海流年，心跳如初~ 碧蓝航线六周年庆典"
+					},
+					{
+						url: "RotationChart/sao.png",
+						p: "刀剑神域十周年纪念，刀剑神域进击篇"
+					},
+					{
+						url: "RotationChart/SkyCity.png",
+						p: "怀旧经典，卡普立工作室作品天空之城"
+					}
+				]
+				const simg = document.querySelector(".showbox img");
+				console.log(simg);
+				console.log(simg.attributes);
+				const sp = document.querySelector(".showbox p");
+				const formerbut = document.getElementById("former")
+				const afterbut = document.getElementById("after")
+				console.log(sp);
+				const sul = document.querySelector(".showbox ul")
+				// 轮播图的索引
+				var sindex = 0;
+				// 加载轮播图函数
+				function replacement() {
+					simg.src = sdata[sindex].url;
+					console.log(sdata[sindex]);
+					sp.innerText = sdata[sindex].p;
+					var sullist = sul.children
+					// console.log(sullist);
+					// 切换轮播图点
+					for (var i = 0; i < sdata.length; i++) {
+						sullist[i].style.fontSize="16px"
+						sullist[i].innerHTML = "😄"
+					}
+					sullist[sindex].style.fontSize="20px"
+					sullist[sindex].innerHTML = "🥰"
+					// console.log(sindex);
+				}
+				// 定时轮播函数
+				ssi = setInterval(() => {
+					replacement()
+					sindex++;
+					if (sindex >= sdata.length) {
+						sindex = 0;
+					}
+				}, 3000)
+				// 按钮切换函数
+				formerbut.addEventListener("click", () => {
+					if (sindex <= 0) {
+						sindex = sdata.length - 1;
+					} else {
+						sindex--;
+					}
+					console.log(sindex);
+					replacement()
+				})
+				afterbut.addEventListener("click", () => {
+					if (sindex >= sdata.length - 1) {
+						sindex = 0;
+					} else {
+						sindex++
+					}
+					console.log(sindex);
+					replacement()
+				})
+				// 轮播图点
+				for (var i = 0; i < sdata.length; i++) {
+					var sli = document.createElement("li")
+					sli.innerHTML = "😄"
+					sli.style = "display:inline;padding:3px"
+					sul.appendChild(sli)
+				}
+				// 所有东西都加载完后执行第一次函数
+				replacement()
+				sindex++;
+			</script>
+			<div class="showcard"
+				style="height: 30%;width: 30%; background-color: #ffffff; border-radius: 10px;overflow: hidden; box-shadow: #666 5px 5px 5px;">
+				<div id="sbdiv"></div>
+				<h1 style="display: inline-block;font-size: 18px;">搜索展示框</h1>
+				<ul id="sbul" style="color: #F60;display: flex;justify-content: center; margin: 10px;"><img src="imgs/OIP-C.jpg" alt="用来撑开搜索框" style="width: 80%;max-width: 250px;"></ul>
+			</div>
+			<!-- js代码在612行-->
+		</div>
+		
+
+		<div id="box">
+			<h2 class="box_head"><span>热门好物 快来看看</span></h2>
+			<ul>
+			</ul>
+		</div>
+		<div id="car" class="car">
+
+			<div class="head_row hid">
+				<div class="check left"> <i onclick="checkAll()">√</i></div>
+				<div class="img left">&nbsp;&nbsp;全选</div>
+				<div class="name left">商品名称</div>
+				<div class="price left">单价</div>
+				<div class="number left">数量</div>
+				<div class="subtotal left">小计</div>
+				<div class="ctrl left">操作</div>
+			</div>
+		</div>
+		<div id="sum_area">
+			<div id="pay" onclick="abc()">去结算</div>
+			<div id="pay_amout">合计：<span id="price_num">0</span>元</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function abc() {
+			location.href = 'tips.html'
+		}
+	</script>
+
+</html>
