@@ -14,7 +14,7 @@
 - ✅ **登录样式切换**：通过按钮来切换登录界面的样式
 - ✅ **精美好看的动画**：
 ## 📸 项目截图
-![登录界面](https://i.111666.best/image/0Lz5YaaKhrnzPpTvvdCK2d.png)
+![登录界面](/show/2025_03_14_10_33_41.png)
 ![登录界面的其他样式](https://i.111666.best/image/iWFXoDN2Rv9tnnMLJDxFOj.png)
 ![商品展示界面](https://i.111666.best/image/Vanh593cRjBeB8Pe9yTO33.png)
 ![购物车](https://i.111666.best/image/u3RgXrDBQbvBeCzfkpOhsd.png)
